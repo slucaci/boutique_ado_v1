@@ -17,7 +17,16 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+    />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% endblock %} {% block extra_css %} {% endblock %} {% block corejs %}
+    <script
+      src="https://kit.fontawesome.com/e9c73d7092.js"
+      crossorigin="anonymous"
+    ></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -39,7 +48,7 @@
   </head>
   <body>
     <header class="container-fluid fixed-top">
-      <div class="row">
+      <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
         <div
           class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left"
         >
@@ -91,8 +100,9 @@
                 class="dropdown-menu border-0"
                 aria-labelledby="user-options"
               >
-                {% if request.user.is_authenticated %} {% if
-                request.user.is_superuser %}
+                {% if request.user.is_authenticated %}
+                <!--  -->
+                {% if request.user.is_superuser %}
                 <a href="" class="dropdown-item">Product Management</a>
                 {% endif %}
                 <a href="" class="dropdown-item">My Profile</a>
@@ -117,8 +127,9 @@
                 <div class="text-center">
                   <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                   <p class="my-0">
-                    {% if grand_total %} ${{ grand_total|floatformat:2 }} {%
-                    else %} $0.00 {% endif %}
+                    {% if grand_total %} ${{ grand_total|floatformat:2 }}
+                    <!--  -->
+                    {% else %} $0.00 {% endif %}
                   </p>
                 </div>
               </a>
@@ -130,7 +141,8 @@
 
     {% if messages %}
     <div class="message-container"></div>
-    {% endif %} {% block page_header %} {% endblock %} {% block content %} {%
-    endblock %} {% block postloadjs %} {% endblock %}
+    {% endif %} {% block page_header %} {% endblock %} {% block content %}
+    <!--  -->
+    {% endblock %} {% block postloadjs %} {% endblock %}
   </body>
 </html>
