@@ -28,8 +28,8 @@
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
     ></script>
     <script
@@ -165,9 +165,23 @@
     </header>
 
     {% if messages %}
-    <div class="message-container"></div>
+    <div class="message-container">
+      {% for message in messages %} {% with message.level as level %}
+      <!--  -->
+      {% if level == 40 %} {% include 'includes/toasts/toast_error.html' %}
+      <!--  -->
+      {% elif level == 30 %} {% include 'includes/toasts/toast_warning.html' %}
+      {% elif level == 25 %} {% include 'includes/toasts/toast_success.html' %}
+      {% else %} {% include 'includes/toasts/toast_info.html' %} {% endif %}
+      <!--  -->
+      {% endwith %} {% endfor %}
+    </div>
     {% endif %} {% block page_header %} {% endblock %} {% block content %}
     <!--  -->
-    {% endblock %} {% block postloadjs %} {% endblock %}
+    {% endblock %} {% block postloadjs %}
+    <script type="text/javascript">
+      $(".toast").toast("show");
+    </script>
+    {% endblock %}
   </body>
 </html>
